@@ -1,0 +1,24 @@
+D:\Nam 4\WebThayLongASP.Net\QuanLySinhVien\QuanLySinhVien\bin\Debug\QuanLySinhVien.exe.config
+D:\Nam 4\WebThayLongASP.Net\QuanLySinhVien\QuanLySinhVien\bin\Debug\QuanLySinhVien.exe
+D:\Nam 4\WebThayLongASP.Net\QuanLySinhVien\QuanLySinhVien\bin\Debug\QuanLySinhVien.pdb
+D:\Nam 4\WebThayLongASP.Net\QuanLySinhVien\QuanLySinhVien\obj\Debug\QuanLySinhVien.csprojAssemblyReference.cache
+D:\Nam 4\WebThayLongASP.Net\QuanLySinhVien\QuanLySinhVien\obj\Debug\QuanLySinhVien.Properties.Resources.resources
+D:\Nam 4\WebThayLongASP.Net\QuanLySinhVien\QuanLySinhVien\obj\Debug\QuanLySinhVien.csproj.GenerateResource.cache
+D:\Nam 4\WebThayLongASP.Net\QuanLySinhVien\QuanLySinhVien\obj\Debug\QuanLySinhVien.csproj.CoreCompileInputs.cache
+D:\Nam 4\WebThayLongASP.Net\QuanLySinhVien\QuanLySinhVien\obj\Debug\QuanLySinhVien.exe
+D:\Nam 4\WebThayLongASP.Net\QuanLySinhVien\QuanLySinhVien\obj\Debug\QuanLySinhVien.pdb
+D:\Nam 4\WebThayLongASP.Net\QuanLySinhVien\QuanLySinhVien\obj\Debug\QuanLySinhVien.Login.resources
+D:\Nam 4\WebThayLongASP.Net\QuanLySinhVien\QuanLySinhVien\obj\Debug\QuanLySinhVien.ManagerStudent.resources
+D:\Nam 4\WebThayLongASP.Net\QuanLySinhVien\QuanLySinhVien\obj\Debug\QuanLySinhVien.ManagerClass.resources
+D:\CODE\.NET\appQuanLySinhVien-master\QuanLySinhVien\QuanLySinhVien\obj\Debug\QuanLySinhVien.Login.resources
+D:\CODE\.NET\appQuanLySinhVien-master\QuanLySinhVien\QuanLySinhVien\obj\Debug\QuanLySinhVien.ManagerClass.resources
+D:\CODE\.NET\appQuanLySinhVien-master\QuanLySinhVien\QuanLySinhVien\obj\Debug\QuanLySinhVien.ManagerStudent.resources
+D:\CODE\.NET\appQuanLySinhVien-master\QuanLySinhVien\QuanLySinhVien\obj\Debug\QuanLySinhVien.Properties.Resources.resources
+D:\CODE\.NET\appQuanLySinhVien-master\QuanLySinhVien\QuanLySinhVien\obj\Debug\QuanLySinhVien.csproj.GenerateResource.cache
+D:\CODE\.NET\appQuanLySinhVien-master\QuanLySinhVien\QuanLySinhVien\obj\Debug\QuanLySinhVien.csproj.CoreCompileInputs.cache
+D:\CODE\.NET\appQuanLySinhVien-master\QuanLySinhVien\QuanLySinhVien\bin\Debug\QuanLySinhVien.exe.config
+D:\CODE\.NET\appQuanLySinhVien-master\QuanLySinhVien\QuanLySinhVien\bin\Debug\QuanLySinhVien.exe
+D:\CODE\.NET\appQuanLySinhVien-master\QuanLySinhVien\QuanLySinhVien\bin\Debug\QuanLySinhVien.pdb
+D:\CODE\.NET\appQuanLySinhVien-master\QuanLySinhVien\QuanLySinhVien\obj\Debug\QuanLySinhVien.exe
+D:\CODE\.NET\appQuanLySinhVien-master\QuanLySinhVien\QuanLySinhVien\obj\Debug\QuanLySinhVien.pdb
+D:\CODE\.NET\appQuanLySinhVien-master\QuanLySinhVien\QuanLySinhVien\obj\Debug\QuanLySinhVien.csprojAssemblyReference.cache
