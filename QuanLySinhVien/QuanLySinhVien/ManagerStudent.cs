@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuanLySinhVien.Object;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
@@ -23,8 +24,12 @@ namespace QuanLySinhVien
         String name;
         String classs;
         String address;
-        public ManagerStudent()
+
+        public List<Student> listStudent;
+        private ManagerClass nextFormClass =null;
+        public ManagerStudent(ManagerClass managerClass)
         {
+            nextFormClass = managerClass;
             InitializeComponent();
         }
 
@@ -32,18 +37,7 @@ namespace QuanLySinhVien
         {
 
         }
-        public  void hienthiSinhVien(string idClass)
-        {
-            
-            string sql = "select * from student where MaLH = @MaLH";
-            cmd = new SqlCommand(sql, con);
-            cmd.Parameters.AddWithValue("MaLH", idClass);
-            dr = cmd.ExecuteReader();
-            dt = new DataTable();
-            dt.Load(dr);
-            dataGridView1.DataSource = dt;
-
-        }
+   
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -55,22 +49,69 @@ namespace QuanLySinhVien
             string maLH = ManagerClass.luuNameClass.idClass;
             txtClass.Text = maLH;
 
+            //connectSQl();
+            //hienthiSinhVien(maLH);
+            hienthiSinhVienArrayList();
+
+        }
+        public void connectSQl()
+        {
             string conString = ConfigurationManager.ConnectionStrings["QLySVien"].ConnectionString.ToString();
             con = new SqlConnection(conString);
             con.Open();
-
-            
-           
-           
-            hienthiSinhVien(maLH);
-            //dataGridView1.DataSource = dt;
         }
+        public void hienthiSinhVien(string idClass)
+        {
+
+            string sql = "select * from student where MaLH = @MaLH";
+            cmd = new SqlCommand(sql, con);
+            cmd.Parameters.AddWithValue("MaLH", idClass);
+            dr = cmd.ExecuteReader();
+            dt = new DataTable();
+            dt.Load(dr);
+            dataGridView1.DataSource = dt;
+
+
+        }
+        public void hienthiSinhVienArrayList()
+        {
+            DataTable dataTable = new DataTable();
+            DataColumn dataColumn;
+            dataColumn = new DataColumn("Mã SV");
+            dataTable.Columns.Add(dataColumn);
+            dataColumn = new DataColumn("Tên SV");
+            dataTable.Columns.Add(dataColumn);
+            dataColumn = new DataColumn("Mã Lớp");
+            dataTable.Columns.Add(dataColumn);
+            dataColumn = new DataColumn("Địa chỉ");
+            dataTable.Columns.Add(dataColumn);
+            string maLH = ManagerClass.luuNameClass.idClass;
+
+            //listStudent = classss.ListStudents;
+             listStudent = ManagerClass.TruyenStudent.truyenList;
+
+            foreach (Student list in listStudent)
+            {
+                DataRow dataRow = dataTable.NewRow();
+                dataRow[0] = list.CodeStudent;
+                dataRow[1] = list.NameStudent;
+                dataRow[2] = maLH;
+                dataRow[3] = list.Address;
+
+                dataTable.Rows.Add(dataRow);
+            }
+
+            dataGridView1.DataSource = dataTable;
+
+        }
+
+
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            ManagerClass managerClass = new ManagerClass();
-            managerClass.Show();
-            Visible = false;
+            nextFormClass.Show();
+            //Visible = false;
+            this.Hide();
         }
         private void addStudent()
         {
@@ -96,7 +137,7 @@ namespace QuanLySinhVien
                 err3 = "Bạn vui lòng điền thông tin địa chỉ";
                 MessageBox.Show(err3);
             } else {
-                if(check_student(mssv, classs) == false)
+                /*if(check_student(mssv, classs) == false)
                 {
                     string sqlInsert = "insert into student values (@MaSV, @TenSV,@MaLH,@DiaChi) ";
                     SqlCommand cmd = new SqlCommand(sqlInsert, con);
@@ -105,15 +146,47 @@ namespace QuanLySinhVien
                     cmd.Parameters.AddWithValue("MaLH", classs);
                     cmd.Parameters.AddWithValue("DiaChi", address);
                     cmd.ExecuteNonQuery();
-                    hienthiSinhVien(classs);
+                    //hienthiSinhVien(classs);
                 }
                 else
                 {
                     MessageBox.Show("Sinh viên đã tồn tại trong database");
+                }*/
+                if (check_Student_ArrayList(mssv)!=true)
+                {
+                    listStudent.Add(new Student(mssv, name, address));
+                    hienthiSinhVienArrayList();
                 }
+                else
+                {
+                    MessageBox.Show("Sinh viên đã tồn tại");
+                }
+                       
 
             }
         }
+        public Boolean check_Student_ArrayList(string mssv)
+        {
+            Boolean result = false;
+            listStudent = ManagerClass.TruyenStudent.truyenList;
+            foreach (Student ls in listStudent)
+            {
+                if (ls.CodeStudent.Equals(mssv))
+                {
+                    result = true;
+                }
+                else
+                {
+                    result = false;
+                }
+            }
+
+            return result;
+        }
+
+
+
+        // check trong sql
         private Boolean check_student(string massv,string maLH)
         {
             Boolean result;
@@ -159,20 +232,34 @@ namespace QuanLySinhVien
             }
             else
             {
-                if (check_student(mssv, classs) == true)
+                /* if (check_student(mssv, classs) == true)
+                 {
+                     string sqlInsert = "update student set MaSV =@MaSV, TenSV=@TenSV, MaLH=@MaLH, DiaChi=@DiaChi where MaSV =@MaSV";
+                     SqlCommand cmd = new SqlCommand(sqlInsert, con);
+                     cmd.Parameters.AddWithValue("MaSV", mssv);
+                     cmd.Parameters.AddWithValue("TenSV", name);
+                     cmd.Parameters.AddWithValue("MaLH", classs);
+                     cmd.Parameters.AddWithValue("DiaChi", address);
+                     cmd.ExecuteNonQuery();
+                    // hienthiSinhVien(classs);
+                 }
+                 else
+                 {
+                     MessageBox.Show("Sinh viên không tồn tại trong hệ thống");
+                 }*/
+                foreach (Student studentEdit in listStudent)
                 {
-                    string sqlInsert = "update student set MaSV =@MaSV, TenSV=@TenSV, MaLH=@MaLH, DiaChi=@DiaChi where MaSV =@MaSV";
-                    SqlCommand cmd = new SqlCommand(sqlInsert, con);
-                    cmd.Parameters.AddWithValue("MaSV", mssv);
-                    cmd.Parameters.AddWithValue("TenSV", name);
-                    cmd.Parameters.AddWithValue("MaLH", classs);
-                    cmd.Parameters.AddWithValue("DiaChi", address);
-                    cmd.ExecuteNonQuery();
-                    hienthiSinhVien(classs);
-                }
-                else
-                {
-                    MessageBox.Show("Sinh viên không tồn tại trong hệ thống");
+                    if (studentEdit.CodeStudent.Equals(mssv))
+                    {
+                        studentEdit.NameStudent = name;
+                        studentEdit.Address = address;
+                        hienthiSinhVienArrayList();
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Sinh viên không tồn tại");
+                    }
                 }
 
             }
@@ -195,28 +282,41 @@ namespace QuanLySinhVien
             }
             else
             {
-                if (check_student(mssv, classs) == true)
+                // -----------------------------------------------------------------su dung sql -----------------------------------
+                // if (check_student(mssv, classs) == true)
+                //{
+                //  string sqlInsert = "delete from student where MaSV=@MaSV";
+                // SqlCommand cmd = new SqlCommand(sqlInsert, con);
+                //cmd.Parameters.AddWithValue("MaSV", mssv);
+                //cmd.ExecuteNonQuery();
+                // hienthiSinhVien(classs);
+                //}
+                //else
+                //{
+                //  MessageBox.Show("Sinh viên không tồn tại trong hệ thống");
+                //}
+                // -----------------------------------------------------------------su dung arraylist -----------------------------------
+                Student studentDel = new Student(mssv, name, address);
+
+                foreach(Student ls1 in listStudent)
                 {
-                    string sqlInsert = "delete from student where MaSV=@MaSV";
-                    SqlCommand cmd = new SqlCommand(sqlInsert, con);
-                    cmd.Parameters.AddWithValue("MaSV", mssv);
-                    cmd.ExecuteNonQuery();
-                    hienthiSinhVien(classs);
+                    if (ls1.CodeStudent.Equals(mssv))
+                    {
+                        listStudent.Remove(ls1);
+                        hienthiSinhVienArrayList();
+                        break;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Sinh viên không tồn tại trong hệ thống");
+                    }
                 }
-                else
-                {
-                    MessageBox.Show("Sinh viên không tồn tại trong hệ thống");
-                }
+
 
             }
         }
-        public static void del_all_student(string maLH)
-        {
-            string sqlSelect = "delete student from class inner join student on class.MaLH = student.MaLH where student.MaLH =@MaLH";
-            SqlCommand cmd = new SqlCommand(sqlSelect, con1);
-            cmd.Parameters.AddWithValue("MaLH", maLH);
-            cmd.ExecuteNonQuery();          
-        }
+        
+
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
@@ -225,7 +325,7 @@ namespace QuanLySinhVien
 
         private void ManagerStudent_FormClosing(object sender, FormClosingEventArgs e)
         {
-            con.Close();
+            //con.Close();
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
@@ -236,6 +336,11 @@ namespace QuanLySinhVien
         private void btnDel_Click(object sender, EventArgs e)
         {
             del_Student();
+        }
+
+        private void txtAddress_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
