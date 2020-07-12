@@ -167,21 +167,17 @@ namespace QuanLySinhVien
         }
         public Boolean check_Student_ArrayList(string mssv)
         {
-            Boolean result = false;
+
             listStudent = ManagerClass.TruyenStudent.truyenList;
             foreach (Student ls in listStudent)
             {
                 if (ls.CodeStudent.Equals(mssv))
                 {
-                    result = true;
-                }
-                else
-                {
-                    result = false;
+                    return  true;
                 }
             }
 
-            return result;
+            return false;
         }
 
 
@@ -247,6 +243,7 @@ namespace QuanLySinhVien
                  {
                      MessageBox.Show("Sinh viên không tồn tại trong hệ thống");
                  }*/
+                int count = 0;
                 foreach (Student studentEdit in listStudent)
                 {
                     if (studentEdit.CodeStudent.Equals(mssv))
@@ -258,8 +255,12 @@ namespace QuanLySinhVien
                     }
                     else
                     {
-                        MessageBox.Show("Sinh viên không tồn tại");
+                        count++;
                     }
+                }
+                if (count == listStudent.Count)
+                {
+                    MessageBox.Show("Sinh viên không tồn tại");
                 }
 
             }
@@ -297,7 +298,7 @@ namespace QuanLySinhVien
                 //}
                 // -----------------------------------------------------------------su dung arraylist -----------------------------------
                 Student studentDel = new Student(mssv, name, address);
-
+                int count = 0;
                 foreach(Student ls1 in listStudent)
                 {
                     if (ls1.CodeStudent.Equals(mssv))
@@ -308,8 +309,12 @@ namespace QuanLySinhVien
                     }
                     else
                     {
-                        MessageBox.Show("Sinh viên không tồn tại trong hệ thống");
+                        count++;
                     }
+                }
+                if(count == listStudent.Count)
+                {
+                    MessageBox.Show("Sinh viên không tồn tại trong hệ thống");
                 }
 
 

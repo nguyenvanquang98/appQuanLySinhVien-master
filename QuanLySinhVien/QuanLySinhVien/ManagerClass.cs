@@ -344,20 +344,25 @@ namespace QuanLySinhVien
                 //MessageBox.Show("Lớp học không tồn tại");
                 //}
                 // --------------------------------------------------- doan nay la arraylisst ------------------------------------
+                int count = 0;
                 foreach (Classes classes in listClasseses)
                 {
                     if (classes.CodeClass.Equals(codeClass) && classes.NameClass.Equals(nameClass))
                     {
                         this.listClasseses.Remove(classes);
                         hienthiArrayList();
+                        count --;
                         break;
                     }
                     else
                     {
-                        MessageBox.Show("Lớp học không tồn tại");
+                        count++;
                     }
                 }
-
+                if (count ==listClasseses.Count)
+                {
+                    MessageBox.Show("Lớp học không tồn tại");
+                }
             }
         }
 
@@ -384,20 +389,15 @@ namespace QuanLySinhVien
 
         private Boolean Check_class_arrayList(String codeClass)
         {
-            Boolean result = false;
             foreach (Classes t in listClasseses)
             {
                 if (t.CodeClass == codeClass)
                 {
-                    result= true;
-                }
-                else
-                {
-                    result = false;
+                    return true;
                 }
                 
             }
-            return result;
+            return false;
             
         }
     }
